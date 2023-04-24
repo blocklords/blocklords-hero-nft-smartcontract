@@ -10,7 +10,7 @@ contract HeroGame is Ownable, IERC721Receiver {
 	ERC721 private nft;		   //Hero nft
 	address private receiver;  //NFT default burning
 
-	event ImpoutNft(address indexed user, uint256 nft1, uint256 nft2, uint256 nft3, uint256 nft4, uint256 nft5, uint256 indexed time);
+	event ImportNft(address indexed user, uint256 nft1, uint256 nft2, uint256 nft3, uint256 nft4, uint256 nft5, uint256 indexed time);
 
 	constructor(address _nft, address _receiver) {
 		nft = ERC721(_nft);
@@ -26,7 +26,7 @@ contract HeroGame is Ownable, IERC721Receiver {
 				nft.safeTransferFrom(msg.sender, receiver, _nft[i]);
 			}
 		}
-		emit ImpoutNft(msg.sender, _nft[0], _nft[1], _nft[2], _nft[3], _nft[4], block.timestamp);
+		emit ImportNft(msg.sender, _nft[0], _nft[1], _nft[2], _nft[3], _nft[4], block.timestamp);
 	}
 
 	function setReceiver(address _receiver) external onlyOwner{
